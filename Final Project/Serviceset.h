@@ -2,6 +2,7 @@
 #define SERVICESET_H
 
 #include <set>
+#include <map>
 #include <vector>
 #include "Waitingqueue.h"
 #include "Random.h"
@@ -74,6 +75,7 @@ public:
 						number_served++;
 						
 						
+						
 						delete patient;
 						
 					}
@@ -85,19 +87,22 @@ public:
 			
 			if (!waitingqueue->the_queue.empty()) {
 
-
 				Patient* patient = waitingqueue->the_queue.top();
+
 
 				for (int i = 0; i < caregivers.size(); i++) {
 					if (caregivers[i]->getOpen() == true) {
 						caregivers[i]->changeOpen(false);
 						patient->assignedCare = caregivers[i];
+						patient->service_time = patient->assignedCare->set_service_time(patient->priority_num);
+						if (patient->service_time < 0) {
+							caregivers[i]->changeOpen(true);
+							continue;
+						}
 						break;
 					}
-						
 				}
-				patient->service_time = patient->assignedCare->set_service_time(patient->priority_num);
-
+				
 				waitingqueue->the_queue.pop();
 
 				patient->start_service_time = clock;

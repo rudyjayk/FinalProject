@@ -28,7 +28,7 @@ public:
 		if (priority_num <= 10)
 			return my_random.next_int(10);
 		else
-			return my_random.next_int(20);
+			return -1;
 
 
 	}

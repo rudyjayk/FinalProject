@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <limits>
 #include <ios>
+#include <fstream>
 #include "Waitingqueue.h"
 #include "Serviceset.h"
 #include "Random.h"
@@ -17,7 +18,7 @@ class Simulator
 private:
 	int total_time1;  // total time to run simulation
 	int clock;       // current time
-	
+	std::vector<string> residents;
 
 	// waiting queue --> service queue 
 	Waitingqueue * waiting_queue;
@@ -58,6 +59,19 @@ public:
 
 	}
 
+	void create_data() {
+		fstream file;
+		string str;
+		file.open("C:\\Users\\rudyj\\Desktop\\Final Project\\Final Project\\Final Project\\residentsOf273ville.txt");
+
+		while (!file.eof()) {
+			file >> str;
+			residents.push_back(str);
+		}
+		
+
+	}
+
 	void enter_data()
 	{
 
@@ -77,6 +91,7 @@ public:
 
 		// set the arrival_rate for the landing queue
 		waiting_queue->set_arrival_rate(arrival_rate);
+		waiting_queue->set_residents(residents);
 
 		service_set->set_waiting_queue(waiting_queue);
 
@@ -100,12 +115,54 @@ public:
 
 	void show_stats()
 	{
-		
-		std::cout << "Number of patients served in the service queue: " << service_set->get_num_served() << std::endl;
-		std::cout << "Total wait time for all patients in service queue: " << service_set->get_total_time() << std::endl;
-		// FIXME: Calculate and display the average wait time for the departure queue
-		std::cout << "Average wait time for all patients in  service queue: " << service_set->get_total_time() / service_set->get_num_served() << std::endl;
+		int num = 1;
 
+		while (num > 0) {
+			num = read_int("Choose a type of information to be displayed \n1) Number of patients visited \n2) Number of patients treated \n3) Total wait time \n4) Average wait time \n5) Choose a patient \n**Enter a negative to exit** \n", INT_MIN, 6);
+
+			switch (num) {
+				case (1): {
+					std::cout << "Number of patients visited: " << waiting_queue->get_visited() << std::endl << std::endl;
+					break;
+
+				}
+				case (2): {
+					std::cout << "Number of patients treated: " << service_set->get_num_served() << std::endl << std::endl;
+					break;
+
+				}
+				case (3): {
+					std::cout << "Total wait time for all patients in service queue: " << service_set->get_total_time() << std::endl << std::endl;
+					break;
+
+				}
+				case (4): {
+					std::cout << "Average wait time for all patients in  service queue: " << service_set->get_total_time() / service_set->get_num_served() << std::endl << std::endl;
+					break;
+				}
+				case (5): {
+
+					for (int i = 0; i < waiting_queue->resident_record.size(); i++) {
+						std::cout << i + 1 << ") " << waiting_queue->resident_record[i]->name << std::endl;
+					}
+					int index = read_int("Select a patient: ", 1, waiting_queue->resident_record.size()) - 1;
+
+					std::cout << "Patient: " << waiting_queue->resident_record[index]->name << std::endl;
+					std::cout << "Number of times visited: " << waiting_queue->resident_record[index]->num_visits << std::endl;
+					std::cout << "Severity of each illness: ";
+
+					for (int i = 0; i < waiting_queue->resident_record[index]->priorityNumbers.size(); i++) {
+						std::cout << waiting_queue->resident_record[index]->priorityNumbers[i] << " ";
+					}
+
+					std::cout << std::endl << std::endl;
+					break;
+
+				}
+
+			}
+		}
+	
 		std::cout << std::endl;
 		
 	}

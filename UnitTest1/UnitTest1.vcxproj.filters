@@ -15,36 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Nurse.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Doctor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Simulator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Patient.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Random.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Waitingqueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Serviceset.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="UnitTest1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="residentsOf273ville.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

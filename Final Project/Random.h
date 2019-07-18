@@ -25,7 +25,7 @@ public:
 
 	/** Returns a random integer in the range 0 – n. */
 	int next_int(int n) {
-		return int(next_double() * n);
+		return int((next_double() * n));
 	}
 
 	/** Return a random double in the range 0 – 1. */
