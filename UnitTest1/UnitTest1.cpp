@@ -12,14 +12,14 @@ namespace UnitTest1
 	{
 	public:
 		
-		TEST_METHOD(Test_changOpen)
+		TEST_METHOD(Test_changOpen_Nurse) //Tests changeOpen function of Nurse class
 		{
-			Nurse test1(1);
+			Nurse test1(1); 
 			test1.changeOpen(false);
 			Assert::AreEqual(test1.getOpen(), false);
 		}
 
-		TEST_METHOD(Test_operator_overload)
+		TEST_METHOD(Test_operator_overload) //Tests the operator '<'  with patient class
 		{
 			Patient test2("Rudy",10, 0);
 			Patient other("Rob",11, 0);
@@ -27,14 +27,14 @@ namespace UnitTest1
 			Assert::AreEqual(test2 < other, true);
 		}
 
-		TEST_METHOD(Test_changOpen)
+		TEST_METHOD(Test_changOpen_Doctor) //Tests the changeOpen method with Doctor class
 		{
 			Doctor test3(3);
 			test3.changeOpen(false);
 			Assert::AreEqual(test3.getOpen(), false);
 		}
 
-		TEST_METHOD(Test_priorityqueue)
+		TEST_METHOD(Test_priorityqueue) //Test the operator overload '<' with the priority queue
 		{
 			
 			std::priority_queue<Patient*> testQueue;

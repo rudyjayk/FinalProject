@@ -1,3 +1,5 @@
+//**This file is copied from the Airport Simulator project that we had for Homework 7**
+
 #ifndef RANDOM_H
 #define RANDOM_H
 
